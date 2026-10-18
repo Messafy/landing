@@ -8,6 +8,7 @@
 	--text-secondary: #d0d6e0;
 	--text-muted: #8a8f98;
 	--accent: #e4f222;
+	--focus-ring: rgba(228, 242, 34, 0.65);
 }
 
 * {

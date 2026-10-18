@@ -1,0 +1,51 @@
+---
+import Link from './Link.astro';
+import { appUrls } from '../config/appUrls.js';
+import '../styles/home-details.css';
+---
+
+<section class="home-details" aria-labelledby="why-messafy-title">
+	<div class="home-details__intro">
+		<p class="eyebrow">A quieter kind of social</p>
+		<h2 id="why-messafy-title">Make space for the things you don&apos;t say out loud.</h2>
+		<p class="home-details__lead">Some thoughts are easier to share when your name isn&apos;t attached. Messafy gives every idea a little room to breathe.</p>
+	</div>
+
+	<div class="home-details__stats" aria-label="Messafy highlights">
+		<div><strong>01</strong><span>Write freely</span></div>
+		<div><strong>02</strong><span>Stay anonymous</span></div>
+		<div><strong>03</strong><span>Be heard</span></div>
+	</div>
+
+	<div class="home-details__grid">
+		<article class="detail-card detail-card--dark">
+			<span class="detail-card__number">01 / NOTES</span>
+			<h3>Your thoughts, in one place.</h3>
+			<p>Create private notes, collect ideas and keep the words that matter close.</p>
+			<a href="#notes">Explore notes <span aria-hidden="true">↗</span></a>
+		</article>
+		<article class="detail-card">
+			<span class="detail-card__number">02 / MESSAGES</span>
+			<h3>Say it without the pressure.</h3>
+			<p>Send an honest message without the expectations that come with a name.</p>
+			<a href={appUrls.register}>Start writing <span aria-hidden="true">↗</span></a>
+		</article>
+		<article class="detail-card detail-card--accent">
+			<span class="detail-card__number">03 / COMMUNITY</span>
+			<h3>Small words can carry far.</h3>
+			<p>Share opinions, secrets and confessions with people who are ready to listen.</p>
+			<a href={appUrls.register}>Join Messafy <span aria-hidden="true">↗</span></a>
+		</article>
+	</div>
+
+	<div class="home-details__cta">
+		<p class="eyebrow">No performance. No pretending.</p>
+		<h2>There&apos;s a message<br />waiting to be written.</h2>
+		<Link href={appUrls.register} class="home-details__cta-button">Try Messafy for free <span aria-hidden="true">↗</span></Link>
+	</div>
+
+	<footer class="home-details__footer">
+		<span>MESSAFY © 2024</span>
+		<span>Say what you really feel.</span>
+	</footer>
+</section>

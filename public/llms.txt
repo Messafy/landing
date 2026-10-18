@@ -1,0 +1,21 @@
+# Messafy
+
+> A social space to create notes and send anonymous messages. Share opinions, secrets and confessions with others without revealing your identity to recipients.
+
+## Public content
+
+- [Homepage](https://www.messafy.org/): Product introduction and links to the separate Messafy app.
+- [Features](https://www.messafy.org/#features): Anonymous messaging and note creation overview.
+- [Notes preview](https://www.messafy.org/#notes): Decorative dashboard preview, not real user content.
+- [Sitemap](https://www.messafy.org/sitemap.xml): Canonical public pages available for indexing.
+
+## Application access
+
+- [Sign in](https://app.messafy.org/login): Authentication entry point, not public editorial content.
+- [Create an account](https://app.messafy.org/register): Registration entry point, not public editorial content.
+
+## Boundaries
+
+The public marketing site is https://www.messafy.org/. The authenticated application is hosted separately at https://app.messafy.org/ and is marked noindex. Private notes, messages, account data and API endpoints are not public reference content and are not included in the sitemap. Anonymous messaging describes how messages are presented to recipients; it is not a claim of untraceability or end-to-end encryption.
+
+This file is an informational content map, not an access-control policy or a guarantee of inclusion in AI systems.

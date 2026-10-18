@@ -9,18 +9,53 @@ interface Props {
 
 const {
 	title,
-	description = 'A private space for notes that stays out of your way.',
+	description = 'Messafy is a social space to create notes and send anonymous messages. Share opinions, secrets and confessions with others without revealing your identity.',
 } = Astro.props;
+
+const canonicalUrl = new URL(Astro.url.pathname, Astro.site).href;
+const socialImageUrl = new URL('/social-card.png', Astro.site).href;
+const socialImageAlt = 'Messafy homepage: send anonymous messages, share opinions, secrets and confessions.';
+const robots = process.env.VERCEL_ENV === 'preview' ? 'noindex, nofollow' : 'index, follow';
+const website = {
+	'@context': 'https://schema.org',
+	'@type': 'WebSite',
+	name: 'Messafy',
+	url: Astro.site?.href,
+	description,
+	image: socialImageUrl,
+	inLanguage: 'en',
+};
 ---
 
 <!doctype html>
 <html lang="en">
 	<head>
 		<meta charset="utf-8" />
+		<link rel="icon" type="image/png" href="/messafy_icon.png" />
+		<meta name="author" content="Luis Piquin Rey" />
+		<meta name="keywords" content="Messafy, anonymous messages, anonymous messaging, anonymous confessions, secrets, opinions, notes, social platform" />
 		<meta name="viewport" content="width=device-width" />
 		<meta name="theme-color" content="#08090a" />
 		<meta name="description" content={description} />
 		<meta name="generator" content={Astro.generator} />
+		<meta name="robots" content={robots} />
+		<link rel="canonical" href={canonicalUrl} />
+		<meta property="og:type" content="website" />
+		<meta property="og:site_name" content="Messafy" />
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={description} />
+		<meta property="og:url" content={canonicalUrl} />
+		<meta property="og:image" content={socialImageUrl} />
+		<meta property="og:image:type" content="image/png" />
+		<meta property="og:image:width" content="1200" />
+		<meta property="og:image:height" content="630" />
+		<meta property="og:image:alt" content={socialImageAlt} />
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:title" content={title} />
+		<meta name="twitter:description" content={description} />
+		<meta name="twitter:image" content={socialImageUrl} />
+		<meta name="twitter:image:alt" content={socialImageAlt} />
+		<script type="application/ld+json" set:html={JSON.stringify(website).replace(/</g, '\\u003c')} />
 		<title>{title}</title>
 	</head>
 	<body>

@@ -1,4 +1,6 @@
 ---
+import Analytics from '@vercel/analytics/astro';
+import SpeedInsights from '@vercel/speed-insights/astro';
 import '../styles/tokens.css';
 import '../styles/base.css';
 
@@ -60,5 +62,7 @@ const website = {
 	</head>
 	<body>
 		<slot />
+		<SpeedInsights />
+		<Analytics />
 	</body>
 </html>

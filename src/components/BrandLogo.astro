@@ -1,0 +1,10 @@
+---
+interface Props {
+	name?: string;
+	src?: string;
+}
+
+const { name = 'Messafy', src = '/messafy_logo.webp' } = Astro.props;
+---
+
+<img class="brand" src={src} alt={name} />

@@ -1,0 +1,63 @@
+---
+import '../styles/notes-dashboard-preview.css';
+
+const notes = Array.from({ length: 7 });
+const noteWidths = [68, 76, 57, 83, 62, 72, 54];
+---
+
+<div class="notes-app-preview" id="notes" aria-hidden="true">
+	<aside class="notes-app-preview__aside">
+		<span class="profile"></span>
+		<div class="collection-labels">
+			<span class="label label--active">
+				<svg class="icon" viewBox="0 0 24 24"><path d="M6 3.75h8.5L19 8.3v11.95H6z"/><path d="M14 3.75V9h5M9 13h7m-7 3h7"/></svg>
+			</span>
+			<span class="label">
+				<svg class="icon" viewBox="0 0 24 24"><path d="m15.5 3.5 5 5-3.4.8-3.3 4.8-4.9-4.9 4.8-3.3z"/><path d="m9 9-5.5 5.5m3 2 2-2m-4 5 5-5"/></svg>
+			</span>
+			<span class="label">
+				<svg class="icon" viewBox="0 0 24 24"><path d="M4 7h16M9 7V4h6v3m3 0-.8 13H6.8L6 7m4 4v5m4-5v5"/></svg>
+			</span>
+		</div>
+	</aside>
+
+	<div class="notes-app-preview__main">
+		{notes.map((_, index) => (
+			<div class="placeholder-note-item">
+				<span class="profile profile--small"></span>
+				<div class="placeholder-note-item__content">
+					<span class="placeholder-line placeholder-line--wither" style={`width: ${noteWidths[index]}%`}></span>
+					<span class="placeholder-line placeholder-line--wither" style="width: 100%"></span>
+				</div>
+			</div>
+		))}
+	</div>
+
+	<div class="notes-app-preview__editor">
+		<div class="notes-app-preview__editor-heading">
+			<span class="placeholder-line placeholder-line--white" style="width: 38%"></span>
+			<span class="placeholder-line placeholder-line--wither" style="width: 24%"></span>
+		</div>
+		<div class="notes-app-preview__editor-paragraph">
+			<span class="placeholder-line placeholder-line--wither" style="width: 100%"></span>
+			<span class="placeholder-line placeholder-line--wither" style="width: 91%"></span>
+			<span class="placeholder-line placeholder-line--wither" style="width: 96%"></span>
+			<span class="placeholder-line placeholder-line--wither" style="width: 67%"></span>
+		</div>
+		<div class="notes-app-preview__editor-paragraph">
+			<span class="placeholder-line placeholder-line--wither" style="width: 87%"></span>
+			<span class="placeholder-line placeholder-line--wither" style="width: 54%"></span>
+		</div>
+		<div class="notes-app-preview__editor-checklist">
+			<div class="notes-app-preview__editor-check"><span></span><i class="placeholder-line placeholder-line--wither" style="width: 44%"></i></div>
+			<div class="notes-app-preview__editor-check"><span></span><i class="placeholder-line placeholder-line--wither" style="width: 58%"></i></div>
+			<div class="notes-app-preview__editor-check"><span></span><i class="placeholder-line placeholder-line--wither" style="width: 47%"></i></div>
+		</div>
+		<div class="notes-app-preview__editor-paragraph">
+			<span class="placeholder-line placeholder-line--wither" style="width: 94%"></span>
+			<span class="placeholder-line placeholder-line--wither" style="width: 100%"></span>
+			<span class="placeholder-line placeholder-line--wither" style="width: 82%"></span>
+			<span class="placeholder-line placeholder-line--wither" style="width: 56%"></span>
+		</div>
+	</div>
+</div>

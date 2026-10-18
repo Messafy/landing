@@ -1,0 +1,22 @@
+---
+interface Props {
+	maxLength?: number;
+}
+
+const { maxLength = 5 } = Astro.props;
+const visibleLinkCount = Number.isFinite(maxLength) ? Math.max(0, Math.trunc(maxLength)) : 5;
+---
+
+<div class="collection-links">
+	<slot />
+</div>
+
+<style is:inline>
+	.collection-links {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 48px;
+	}
+</style>
+
+<style is:inline set:html={`.collection-links > :nth-child(n + ${visibleLinkCount + 1}) { display: none; }`}></style>

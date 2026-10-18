@@ -1,0 +1,18 @@
+---
+import Text from './Text.astro';
+
+const { href, rel, target, class: classAttribute, className, ...props } = Astro.props;
+const safeRel = target === '_blank' ? rel ?? 'noreferrer' : rel;
+---
+
+<a
+	class:list={['link', classAttribute, className]}
+	href={href}
+	rel={safeRel}
+	target={target}
+	{...props}
+>
+	<Text as="span" size="link" weight="medium" color="inherit">
+		<slot />
+	</Text>
+</a>

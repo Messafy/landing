@@ -1,0 +1,176 @@
+---
+import '../styles/tokens.css';
+
+const elements = [
+	'a',
+	'b',
+	'blockquote',
+	'code',
+	'div',
+	'em',
+	'h1',
+	'h2',
+	'h3',
+	'h4',
+	'h5',
+	'h6',
+	'i',
+	'label',
+	'li',
+	'mark',
+	'p',
+	'pre',
+	'small',
+	'span',
+	'strong',
+	'sub',
+	'sup',
+	'time',
+	'u',
+] as const;
+
+const colors = [
+	'primary',
+	'secondary',
+	'muted',
+	'rain',
+	'rain-soft',
+	'rain-deep',
+	'danger',
+	'warning',
+	'success',
+	'inherit',
+] as const;
+
+const sizes = ['small', 'body', 'link', 'badge', 'h3', 'h2', 'h1'] as const;
+const weights = ['regular', 'medium', 'semibold', 'bold'] as const;
+const alignments = ['start', 'center', 'end', 'justify'] as const;
+const transforms = ['none', 'uppercase', 'lowercase', 'capitalize'] as const;
+const truncations = ['none', 'single', 'multi'] as const;
+
+interface Props {
+	as?: (typeof elements)[number];
+	block?: boolean;
+	class?: string;
+	className?: string;
+	color?: (typeof colors)[number];
+	size?: (typeof sizes)[number];
+	weight?: (typeof weights)[number];
+	align?: (typeof alignments)[number];
+	transform?: (typeof transforms)[number];
+	truncate?: (typeof truncations)[number];
+	italic?: boolean;
+	muted?: boolean;
+	underline?: boolean;
+	strikethrough?: boolean;
+}
+
+const {
+	as = 'p',
+	block = false,
+	class: classAttribute,
+	className,
+	color = 'inherit',
+	size = 'body',
+	weight,
+	align,
+	transform = 'none',
+	truncate = 'none',
+	italic = false,
+	muted = false,
+	underline = false,
+	strikethrough = false,
+	...attributes
+} = Astro.props;
+
+const Tag = elements.includes(as) ? as : 'p';
+const classes = [
+	'text',
+	`text--color-${colors.includes(color) ? color : 'inherit'}`,
+	`text--size-${sizes.includes(size) ? size : 'body'}`,
+	...(weight && weights.includes(weight) ? [`text--weight-${weight}`] : []),
+	...(align && alignments.includes(align) ? [`text--align-${align}`] : []),
+	...(transform !== 'none' && transforms.includes(transform) ? [`text--transform-${transform}`] : []),
+	...(truncate !== 'none' && truncations.includes(truncate) ? [`text--truncate-${truncate}`] : []),
+	...(italic ? ['text--italic'] : []),
+	...(muted ? ['text--muted'] : []),
+	...(underline ? ['text--underline'] : []),
+	...(strikethrough ? ['text--strikethrough'] : []),
+	...(block ? ['text--block'] : []),
+	classAttribute,
+	className,
+]
+	.filter(Boolean)
+	.join(' ');
+---
+
+<Tag class={classes} {...attributes}>
+	<slot />
+</Tag>
+
+<style>
+	.text {
+		margin: 0;
+		font-family: var(--font-family-base);
+		font-size: var(--font-size-body);
+		font-weight: var(--font-weight-regular);
+		line-height: var(--line-height-body);
+		color: inherit;
+	}
+
+	.text--color-primary { color: var(--color-text-primary); }
+	.text--color-secondary { color: var(--color-text-secondary); }
+	.text--color-muted { color: var(--color-text-muted); }
+	.text--color-rain { color: var(--rain-blue); }
+	.text--color-rain-soft { color: var(--rain-blue-soft); }
+	.text--color-rain-deep { color: var(--rain-blue-deep); }
+	.text--color-danger { color: var(--color-danger); }
+	.text--color-warning { color: var(--color-warning); }
+	.text--color-success { color: var(--color-success); }
+	.text--color-inherit { color: inherit; }
+
+	.text--size-small { font-size: var(--font-size-small); }
+	.text--size-body { font-size: var(--font-size-body); }
+	.text--size-link { font-size: var(--font-size-link); }
+	.text--size-badge { font-size: var(--font-size-badge); }
+	.text--size-h3 { font-size: var(--font-size-h3); line-height: var(--line-height-heading); }
+	.text--size-h2 { font-size: var(--font-size-h2); line-height: var(--line-height-heading); }
+	.text--size-h1 { font-size: var(--font-size-h1); line-height: var(--line-height-heading); }
+
+	.text--weight-regular { font-weight: var(--font-weight-regular); }
+	.text--weight-medium { font-weight: var(--font-weight-medium); }
+	.text--weight-semibold { font-weight: var(--font-weight-semibold); }
+	.text--weight-bold { font-weight: var(--font-weight-bold); }
+
+	.text--align-start { text-align: start; }
+	.text--align-center { text-align: center; }
+	.text--align-end { text-align: end; }
+	.text--align-justify { text-align: justify; }
+
+	.text--transform-uppercase { text-transform: uppercase; letter-spacing: 0.04em; }
+	.text--transform-lowercase { text-transform: lowercase; }
+	.text--transform-capitalize { text-transform: capitalize; }
+
+	.text--italic { font-style: italic; }
+	.text--underline { text-decoration: underline; text-underline-offset: 0.18em; }
+	.text--strikethrough { text-decoration: line-through; }
+	.text--muted { opacity: 0.72; }
+	.text--block { display: block; }
+
+	.text--truncate-single {
+		overflow: hidden;
+		white-space: nowrap;
+		text-overflow: ellipsis;
+	}
+
+	.text--truncate-multi {
+		display: -webkit-box;
+		-webkit-line-clamp: 3;
+		-webkit-box-orient: vertical;
+		overflow: hidden;
+	}
+
+	.text strong {
+		font-weight: var(--font-weight-semibold);
+	}
+</style>

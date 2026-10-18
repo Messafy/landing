@@ -1,0 +1,23 @@
+---
+import Link from './Link.astro';
+import TextBadge from './TextBadge.astro';
+import Text from './Text.astro';
+import { appUrls } from '../config/appUrls.js';
+import '../styles/home-hero-section.css';
+---
+
+<section class="hero-section" id="features" aria-labelledby="hero-title">
+	<div class="hero-section__content">
+		<TextBadge>Write without friction</TextBadge>
+		<Text as="h1" class="title" id="hero-title">Your thoughts, without the noise.</Text>
+		<Text as="p" class="hero-section__description" color="secondary" align="start">
+			Messafy is a private space for notes that stays out of your way.
+			<Text as="strong" color="primary" weight="semibold">Capture an idea in seconds</Text>, organize what matters, and pick up exactly where you left off.
+		</Text>
+
+		<div class="hero-section__actions">
+			<Link href={appUrls.register} class="hero-section__action hero-section__action--primary">Try for free</Link>
+			<Link href="#features" class="hero-section__action hero-section__action--secondary">See how it works</Link>
+		</div>
+	</div>
+</section>

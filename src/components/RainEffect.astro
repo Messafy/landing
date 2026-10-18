@@ -1,0 +1,50 @@
+---
+import '../styles/rain-effect.css';
+
+const clamp = (value, min, max) => Math.min(Math.max(value, min), max);
+
+const deterministicRandom = (seed, salt) => {
+	const value = Math.sin((seed + 1) * 12.9898 + salt * 78.233) * 43758.5453;
+	return value - Math.floor(value);
+};
+
+const getDropPhysics = (seed) => {
+	const massGrams = 0.03 + deterministicRandom(seed, 1) * 0.02;
+	const massKg = massGrams / 1000;
+	const radiusMeters = Math.cbrt((3 * (massKg / 1000)) / (4 * Math.PI));
+	const areaM2 = Math.PI * radiusMeters ** 2;
+	const terminalVelocity = Math.sqrt((2 * massKg * 9.81) / (1.225 * areaM2 * 0.6));
+	const angle = clamp(Math.atan(2.2 / terminalVelocity) * (180 / Math.PI), 6, 16);
+	const duration = clamp(900 / (terminalVelocity * 140), 0.85, 2.4);
+	const depth = Math.round(clamp(1 + ((massGrams - 0.03) / 0.02) * 4, 1, 5));
+
+	return { angle, depth, duration, drift: Math.tan((angle * Math.PI) / 180) * 900 };
+};
+
+const drops = Array.from({ length: 48 }, (_, index) => {
+	const seed = index + 1;
+	const { angle, depth, duration, drift } = getDropPhysics(seed);
+
+	return {
+		id: index,
+		left: (index * 23 + Math.floor(index / 5) * 11) % 104 - 2,
+		top: (index * 31 + Math.floor(index / 7) * 13) % 108 - 12,
+		delay: -((index * 37) % 240) / 100,
+		depth,
+		angle,
+		duration,
+		drift,
+	};
+});
+---
+
+<div class="rain" aria-hidden="true">
+	{drops.map((drop) => (
+		<span
+			class="rain__drop-position"
+			style={`--rain-drop-left:${drop.left}%;--rain-drop-top:${drop.top}%;--rain-drop-depth:${drop.depth};--rain-drop-angle:-${drop.angle}deg;--rain-drop-delay:${drop.delay}s;--rain-drop-duration:${drop.duration}s;--rain-drop-drift:${drop.drift}px`}
+		>
+			<span class="rain__drop"></span>
+		</span>
+	))}
+</div>

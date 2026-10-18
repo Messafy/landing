@@ -1,0 +1,16 @@
+---
+import HomeContent from '../components/HomeContent.astro';
+import HomePage from '../components/HomePage.astro';
+import HomeNavigationHeader from '../components/HomeNavigationHeader.astro';
+import SiteLayout from '../layouts/SiteLayout.astro';
+---
+
+<SiteLayout
+	title="Messafy — Your thoughts, without the noise"
+	description="A private space for notes that stays out of your way. Capture an idea in seconds and pick up exactly where you left off."
+>
+	<HomePage>
+		<HomeNavigationHeader />
+		<HomeContent />
+	</HomePage>
+</SiteLayout>

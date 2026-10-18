@@ -1,0 +1,46 @@
+.rain {
+	position: fixed;
+	z-index: 1;
+	inset: 0;
+	overflow: hidden;
+	pointer-events: none;
+}
+
+.rain__drop-position {
+	position: absolute;
+	top: var(--rain-drop-top);
+	left: var(--rain-drop-left);
+}
+
+.rain__drop {
+	display: block;
+	width: 3px;
+	height: 72px;
+	border-radius: 999px;
+	background: linear-gradient(
+		180deg,
+		rgba(138, 143, 152, 0) 0%,
+		rgba(138, 143, 152, 0.14) 16%,
+		rgba(98, 102, 109, 0.58) 48%,
+		rgba(56, 59, 63, 0.28) 78%,
+		rgba(56, 59, 63, 0) 100%
+	);
+	box-shadow: 0 0 calc(var(--rain-drop-depth) * 0.45px) rgba(138, 143, 152, 0.12);
+	filter: blur(calc((6 - var(--rain-drop-depth)) * 0.07px));
+	opacity: calc(0.08 + (var(--rain-drop-depth) * 0.068));
+	transform: translate3d(0, -12vh, 0) rotate(var(--rain-drop-angle));
+	transform-origin: top center;
+	animation: rain-drop-fall var(--rain-drop-duration) linear var(--rain-drop-delay) infinite;
+}
+
+@keyframes rain-drop-fall {
+	to {
+		transform: translate3d(var(--rain-drop-drift), 112vh, 0) rotate(var(--rain-drop-angle));
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.rain {
+		display: none;
+	}
+}

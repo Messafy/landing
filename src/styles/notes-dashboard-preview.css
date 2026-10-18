@@ -1,0 +1,228 @@
+.notes-app-preview {
+	display: grid;
+	width: 100%;
+	min-width: 0;
+	min-height: clamp(380px, 31vw, 460px);
+	grid-template-columns: 38px minmax(0, 0.75fr) minmax(0, 1.25fr);
+	column-gap: clamp(14px, 1.4vw, 22px);
+	align-self: center;
+	justify-self: center;
+	padding: 24px 18px;
+	overflow: hidden;
+	border: 1px solid var(--border);
+	border-radius: 12px;
+	background: var(--surface);
+	box-shadow: inset 0 0 0 0.5px var(--border);
+	color: var(--text-primary);
+	transform: perspective(1000px) rotateY(-18deg) rotateX(6deg) rotateZ(-4deg);
+	transform-origin: center;
+	transform-style: preserve-3d;
+}
+
+.notes-app-preview__aside {
+	display: flex;
+	width: 100%;
+	height: 100%;
+	flex-direction: column;
+	align-items: center;
+	justify-content: flex-start;
+	gap: 12px;
+	padding-block-start: 8px;
+}
+
+.notes-app-preview__aside > .profile {
+	width: 16px;
+	height: 16px;
+}
+
+.notes-app-preview__aside .collection-labels {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 8px;
+}
+
+.notes-app-preview__aside .label {
+	display: flex;
+	width: 38px;
+	height: 38px;
+	min-height: 38px;
+	flex: 0 0 auto;
+	align-items: center;
+	justify-content: center;
+	padding: 0;
+	border-radius: 8px;
+	color: var(--text-secondary);
+}
+
+.notes-app-preview__aside .label--active {
+	background: rgba(255, 255, 255, 0.08);
+	color: var(--text-primary);
+}
+
+.notes-app-preview__aside .icon {
+	width: 20px;
+	height: 20px;
+	flex-shrink: 0;
+	fill: none;
+	stroke: currentColor;
+	stroke-linecap: round;
+	stroke-linejoin: round;
+	stroke-width: 1.6;
+}
+
+.notes-app-preview__main {
+	display: grid;
+	min-width: 0;
+	grid-auto-rows: max-content;
+	align-content: start;
+	gap: 8px;
+	padding-block: 8px;
+}
+
+.placeholder-note-item {
+	display: flex;
+	width: 100%;
+	height: fit-content;
+	flex-direction: row;
+	align-items: center;
+	gap: 8px;
+	min-width: 0;
+	padding: 12px 8px;
+	border-radius: 6px;
+	background: transparent;
+	transition: background-color 180ms ease;
+}
+
+.placeholder-note-item:hover {
+	background: var(--surface-raised);
+}
+
+.placeholder-note-item__content {
+	display: flex;
+	min-width: 0;
+	height: 100%;
+	flex: 1;
+	flex-direction: column;
+	gap: 8px;
+}
+
+.profile {
+	display: inline-flex;
+	width: 36px;
+	height: 36px;
+	flex-shrink: 0;
+	align-items: center;
+	justify-content: center;
+	border-radius: 50%;
+	background: #62666d;
+}
+
+.profile--small {
+	width: 22px;
+	height: 22px;
+}
+
+.placeholder-line {
+	display: block;
+	width: 100%;
+	max-width: 100%;
+	height: 6px;
+	flex-shrink: 0;
+	border-radius: 999px;
+	background: #8a8f98;
+}
+
+.placeholder-line--wither {
+	opacity: 0.38;
+}
+
+.placeholder-line--white {
+	height: 7px;
+	background: var(--text-secondary);
+	opacity: 0.86;
+}
+
+.notes-app-preview__editor {
+	display: flex;
+	min-width: 0;
+	flex: 1;
+	flex-direction: column;
+	justify-content: flex-start;
+	gap: 26px;
+	padding: 18px 8px 16px 16px;
+	border-left: 1px solid var(--border);
+}
+
+.notes-app-preview__editor .placeholder-line {
+	height: 5px;
+	opacity: 0.38;
+}
+
+.notes-app-preview__editor .placeholder-line--white {
+	height: 7px;
+	opacity: 0.86;
+}
+
+.notes-app-preview__editor-heading,
+.notes-app-preview__editor-paragraph {
+	display: flex;
+	flex-direction: column;
+	gap: 9px;
+}
+
+.notes-app-preview__editor-heading {
+	gap: 12px;
+}
+
+.notes-app-preview__editor-checklist {
+	display: flex;
+	flex-direction: column;
+	gap: 9px;
+}
+
+.notes-app-preview__editor-check {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+}
+
+.notes-app-preview__editor-check > span {
+	width: 8px;
+	height: 8px;
+	flex: 0 0 auto;
+	border: 1px solid rgba(255, 255, 255, 0.32);
+	border-radius: 50%;
+}
+
+.notes-app-preview__editor-check > .placeholder-line {
+	width: auto;
+}
+
+@media (max-width: 1050px) {
+	.notes-app-preview {
+		width: min(100%, 720px);
+		min-height: 400px;
+		transform: perspective(1200px) rotateY(-10deg) rotateX(4deg) rotateZ(-2deg);
+	}
+}
+
+@media (max-width: 560px) {
+	.notes-app-preview {
+		min-height: 320px;
+		grid-template-columns: 38px minmax(0, 1fr);
+		column-gap: 18px;
+		padding: 20px 14px;
+		transform: none;
+	}
+
+	.notes-app-preview__main {
+		display: none;
+	}
+
+	.notes-app-preview__editor {
+		gap: 24px;
+		padding: 8px 0 8px 16px;
+	}
+
+}

@@ -1,0 +1,24 @@
+.home-page {
+	position: relative;
+	isolation: isolate;
+	display: flex;
+	min-height: 100svh;
+	width: 100%;
+	flex-direction: column;
+	align-items: center;
+	overflow: clip;
+	background-color: var(--page-background);
+}
+
+.home-page::before {
+	position: absolute;
+	z-index: 0;
+	inset: 0;
+	background-image:
+		linear-gradient(rgba(255, 255, 255, 0.075) 1px, transparent 1px),
+		linear-gradient(90deg, rgba(255, 255, 255, 0.075) 1px, transparent 1px);
+	background-size: 3rem 3rem;
+	content: '';
+	mask-image: radial-gradient(ellipse 76% 58% at 50% 34%, #000 0%, transparent 72%);
+	pointer-events: none;
+}
